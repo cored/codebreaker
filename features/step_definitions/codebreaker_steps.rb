@@ -17,9 +17,14 @@ end
 
 When /^I start a new game$/ do 
   game = Codebreaker::Game.new(output)
-  game.start
+  game.start('1234')
 end
 
 Then /^I should see "([^"]*)"$/ do |message|
   output.messages.should include(message)
+end
+
+Given /^the secret code is "([^""]*)"$/ do |secret|
+  game = Codebreaker::Game.new(output)
+  game.start(secret)
 end
